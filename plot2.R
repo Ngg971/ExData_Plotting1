@@ -10,8 +10,10 @@ power_data_selected_days <- subset(power_data, Date == as.Date("2007-02-01 00:00
 # Generate datetime column
 power_data_selected_days$DateTime <- strptime(paste(power_data_selected_days$Date, power_data_selected_days$Time), format='%Y-%m-%d %H:%M:%S')
 
+# Save plot once generated (dev.copy method not working)
+png("plot2.png", width = 480, height = 480)
+
 # Plot line
 plot(power_data_selected_days$DateTime, power_data_selected_days$Global_active_power, type="o", pch=NA, xlab="", ylab="Global Active Power (kilowatts)")
 
-# Save plot
-dev.copy(png, file="plot2.png")
+dev.off()
